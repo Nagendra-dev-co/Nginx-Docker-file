@@ -34,7 +34,7 @@ jobs:
         name: bulid image and push to docker hub 
         uses: docker/bulid-push-action@v4 
         with: 
-          contents: ./Doockerfile
+          contents: ./Dockerfile
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/nginx-ubuntu-latest
 
