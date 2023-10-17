@@ -29,7 +29,7 @@ jobs:
             password: ${{secrets.DOCKERHUB_TOKEN}}
       - 
          name: setup docker bulid 
-         uses: docker/setup-buildx-actions@v2 
+         uses: docker/setup-buildx-action@v2 
       - 
         name: bulid image and push to docker hub 
         uses: docker/bulid-push-action@v4 
