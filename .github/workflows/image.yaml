@@ -36,7 +36,7 @@ jobs:
         with: 
           contents: ./Dockerfile
           push: true
-          tags: ${{secrets.DOCKERHUB_USERNAME}}/nginx-ubuntu-latest2
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/nginx-ubuntu-latest2:${{ github.run_number }}
 
 
     
