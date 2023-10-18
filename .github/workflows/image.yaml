@@ -1,44 +1,42 @@
+
 name: "cicd"
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   pull_request:
-    branches:
-      - main
+     branches: ["main"]
 
 permissions:
-  contents: read
+  contents: read 
 
 jobs:
   nginx-image-bulid:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
     environment: prod
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{secrets.DOCKERHUB_USERNAME}}
-          password: ${{secrets.DOCKERHUB_TOKEN}}
-
-      - name: Build and Push Docker Image
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          context: 
-          file: ./Dockerfile
+      -
+         name: checkout repo
+         uses: actions/checkout@v3 
+         with:
+            token: ${{secrets.LOGIN_KEY}}
+      - 
+         name: login to  docker hub 
+         uses: docker/login-action@v2
+         with:
+            username: ${{secrets.DOCKERHUB_USERNAME}}
+            password: ${{secrets.DOCKERHUB_TAKEN}}
+      - 
+         name: setup docker bulid 
+         uses: docker/setup-buildx-action@v2 
+      - 
+        name: bulid image and push to docker hub 
+        uses: docker/build-push-action@v4 
+        with: 
+          contents: ./Dockerfile
           push: true
-          tags: ${{secrets.DOCKERHUB_USERNAME}}/nginx-ubuntu-latest1
-
-
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/nginx-ubuntu-latest2
 
 
     
